@@ -1,5 +1,6 @@
 import { projects } from "@/data/projects";
 import type { Metadata } from "next";
+import Link from "next/link";
 import ProjectPageClient from "./ProjectPageClient";
 
 interface PageProps {
@@ -47,9 +48,9 @@ export default async function ProjectPage({ params }: PageProps) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <a href="/" className="text-accent hover:underline">
+          <Link href="/" className="text-accent hover:underline">
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     );

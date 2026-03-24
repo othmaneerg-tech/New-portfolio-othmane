@@ -10,21 +10,6 @@ import { useRouter } from "next/navigation";
 
 const galleryItems = [
   {
-    type: "video",
-    src: "/assets/unlocked/pure-energy.mp4",
-    title: "Pure Energy",
-    description: "Team building… Moroccan edition",
-    color: "59, 130, 246",
-  },
-  {
-    type: "video",
-    src: "/assets/unlocked/babbyfoot.mp4",
-    title: "Baby Foot legend",
-    description: "I spent more energy shouting at the table than actually scoring goals.",
-    isMuted: true,
-    color: "41, 151, 255",
-  },
-  {
     type: "image",
     src: "/assets/unlocked/img1.jpeg",
     title: "Always Learning",
@@ -37,6 +22,14 @@ const galleryItems = [
     title: "Surf Champion",
     description: "Just kidding… I fell on the first wave..",
     color: "255, 122, 89",
+  },
+  {
+    type: "video",
+    src: "/assets/unlocked/babbyfoot.mp4",
+    title: "Baby Foot legend",
+    description: "I spent more energy shouting at the table than actually scoring goals.",
+    isMuted: true,
+    color: "41, 151, 255",
   },
   {
     type: "image",
@@ -59,14 +52,6 @@ const galleryItems = [
     description: "Best brainstorming sessions start with tajine.",
     isMuted: true,
     color: "249, 115, 22",
-  },
-  {
-    type: "image",
-    src: "/assets/unlocked/mystery_ex_girl.png",
-    title: "My Ex...",
-    description: "Click to see the person who didn't believe in me.",
-    color: "239, 68, 68",
-    href: "/ex-not-found",
   },
 ];
 

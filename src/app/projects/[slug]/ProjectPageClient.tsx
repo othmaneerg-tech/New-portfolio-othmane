@@ -313,22 +313,24 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               Like what you see?
             </h3>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.a
-                href="/#projects"
-                className="px-8 py-4 border border-border rounded-full text-sm font-medium text-muted hover:text-foreground hover:border-foreground/30 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                ← More Projects
-              </motion.a>
-              <motion.a
-                href="/#project-media"
-                className="px-8 py-4 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-hover transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Project Media →
-              </motion.a>
+              <Link href="/#projects" passHref legacyBehavior={false}>
+                <motion.div
+                  className="px-8 py-4 border border-border rounded-full text-sm font-medium text-muted hover:text-foreground hover:border-foreground/30 transition-all cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  ← More Projects
+                </motion.div>
+              </Link>
+              <Link href="/#project-media" passHref legacyBehavior={false}>
+                <motion.div
+                  className="px-8 py-4 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-hover transition-colors cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Project Media →
+                </motion.div>
+              </Link>
             </div>
           </AnimatedSection>
         </div>

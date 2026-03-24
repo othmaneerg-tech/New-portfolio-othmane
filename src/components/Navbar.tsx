@@ -138,17 +138,20 @@ export default function Navbar() {
           >
             <nav className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => (
-                <motion.a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
                   className="text-3xl font-semibold text-foreground hover:text-accent transition-colors"
                 >
-                  {link.label}
-                </motion.a>
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {link.label}
+                  </motion.span>
+                </Link>
               ))}
               <motion.a
                 href={`https://mail.google.com/mail/?view=cm&fs=1&to=othmaneelrhareg@gmail.com&su=Portfolio%20Contact&body=${encodeURIComponent("Salam othmane portfolio dyalk naaaadi, w atbda meana b 15 000 MAD nchaalah o atkhdmm a men dar w btw lkhedma ktbda m3a 12 w tsali m3a 3. Ach ban lik ?")}`}

@@ -1,5 +1,6 @@
 import LightBulbLink from "./LightBulbLink";
 import { Mail, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -20,18 +21,18 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <a
-              href="#about"
+            <Link
+              href="/#about"
               className="text-sm text-muted hover:text-foreground transition-colors duration-300"
             >
               About
-            </a>
-            <a
-              href="#projects"
+            </Link>
+            <Link
+              href="/#projects"
               className="text-sm text-muted hover:text-foreground transition-colors duration-300"
             >
               Projects
-            </a>
+            </Link>
             <a
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=othmaneelrhareg@gmail.com&su=Portfolio%20Contact&body=${encodeURIComponent("Salam othmane portfolio dyalk naaaadi, w atbda meana b 15 000 MAD nchaalah o atkhdmm a men dar w btw lkhedma ktbda m3a 12 w tsali m3a 3. Ach ban lik ?")}`}
               target="_blank"
