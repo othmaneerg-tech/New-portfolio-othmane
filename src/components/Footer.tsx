@@ -50,7 +50,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto order-1 md:order-2">
             <LightBulbLink
-              href="mailto:othmaneelrhareg@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=othmaneelrhareg@gmail.com"
               isExternal
               icon={<Mail className="w-5 h-5 shrink-0" strokeWidth={1.5} />}
               activeColor="#a855f7"
