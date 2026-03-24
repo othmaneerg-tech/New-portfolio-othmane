@@ -7,9 +7,10 @@ export default function Footer() {
       {/* Decorative Gradient Line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
       
-      <div className="w-full px-6 md:px-12 py-8 md:py-10">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-6">
-          <div className="flex flex-col items-start gap-2">
+      <div className="w-full px-6 md:px-12 py-8 md:py-10 pb-12 md:pb-10">
+        {/* Top row: brand + nav */}
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-6">
+          <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">
               Othmane&apos;s <span className="text-purple-500 font-bold drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">Portfolio</span>
             </span>
@@ -42,17 +43,18 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Bottom row: copyright + contact buttons */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted/60">
+          <p className="text-xs text-muted/60 order-2 md:order-1">
             &copy; 2026 Othmane El Rhareg. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto order-1 md:order-2">
             <LightBulbLink
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=othmaneelrhareg@gmail.com"
+              href="mailto:othmaneelrhareg@gmail.com"
               isExternal
-              icon={<Mail className="w-5 h-5" strokeWidth={1.5} />}
-              activeColor="#a855f7" // Purple (purple-500)
-              className="w-full md:w-auto text-purple-400"
+              icon={<Mail className="w-5 h-5 shrink-0" strokeWidth={1.5} />}
+              activeColor="#a855f7"
+              className="w-full sm:w-auto justify-center text-purple-400"
             >
               othmaneelrhareg@gmail.com
             </LightBulbLink>
@@ -60,9 +62,9 @@ export default function Footer() {
             <LightBulbLink
               href="https://www.linkedin.com/in/el-rhareg-othmane"
               isExternal
-              icon={<Linkedin className="w-5 h-5" strokeWidth={1.5} />}
-              activeColor="#db2777" // Pink glow (pink-600)
-              className="w-full md:w-auto"
+              icon={<Linkedin className="w-5 h-5 shrink-0" strokeWidth={1.5} />}
+              activeColor="#db2777"
+              className="w-full sm:w-auto justify-center"
             >
               LinkedIn Profile
             </LightBulbLink>

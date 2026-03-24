@@ -70,6 +70,13 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 0.8], ["0%", "20%"]);
   const heroBlur = useTransform(scrollYProgress, [0, 0.5], ["blur(0px)", "blur(10px)"]);
 
+  const { scrollYProgress: aboutScroll } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"],
+  });
+  const aboutOpacity = useTransform(aboutScroll, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
+  const aboutY = useTransform(aboutScroll, [0, 0.1], [40, 0]);
+
   return (
     <>
       {/* ════════════════════ HERO ════════════════════ */}
@@ -156,7 +163,7 @@ export default function Home() {
       </section>
 
       {/* ════════════════════ ABOUT ════════════════════ */}
-      <section id="about" ref={aboutRef} className="pt-24 pb-12 px-6 relative overflow-hidden flex flex-col items-center justify-center bg-[#050505]">
+      <section id="about" ref={aboutRef} className="pt-24 pb-20 px-6 md:px-12 relative overflow-hidden flex flex-col items-start md:items-center justify-center bg-[#050505]">
         {/* Animated background parallax maintained from previous version */}
         <motion.div
           className="absolute inset-[-5%] z-0"
@@ -177,30 +184,29 @@ export default function Home() {
             />
           </div>
         </motion.div>
-
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto space-y-12 relative z-10 text-center"
+          style={{ opacity: aboutOpacity, y: aboutY }}
+          className="max-w-7xl w-full mx-0 md:mx-auto space-y-10 md:space-y-12 relative z-10 text-left md:text-center"
         >
           {/* Massive Header with Synced Architectural Shine */}
-          <div className="flex flex-col items-center gap-0">
+          <div className="flex flex-col items-start md:items-center gap-0 w-full mb-6 md:mb-0">
             <HoverTextGlow 
               text="Where creativity" 
-              fontSize="clamp(2rem, 7vw, 4.5rem)"
-              className="mb-[-0.3em]"
+              fontSize="clamp(1.4rem, 6.5vw, 4.5rem)"
+              className="mb-[-0.3em] overflow-visible"
             />
             <HoverTextGlow 
               text="meets strategy." 
-              fontSize="clamp(2rem, 7vw, 4.5rem)"
+              fontSize="clamp(1.4rem, 6.5vw, 4.5rem)"
+              className="overflow-visible"
             />
           </div>
 
           {/* Breathable Body Text */}
-          <div className="space-y-8 text-gray-400 text-xl md:text-3xl font-light leading-relaxed max-w-6xl mx-auto text-balance relative">
+          <div className="space-y-6 md:space-y-8 text-gray-400 text-lg md:text-3xl font-light leading-relaxed max-w-6xl mx-0 md:mx-auto relative text-left md:text-center pr-4 md:pr-0">
             <p>
+
+
               Master&apos;s graduate from{" "}
               <motion.span 
                 className="text-white font-medium cursor-help border-b border-white/20 hover:border-accent transition-colors"
@@ -265,7 +271,10 @@ export default function Home() {
             </AnimatePresence>
 
             {/* Skills Row - Scrolling marquee */}
-            <div className="relative pt-6 overflow-hidden w-full" style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}>
+            <div 
+              className="relative pt-6 overflow-hidden w-full"
+              style={{ maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)" }}
+            >
               <div
                 className="flex gap-3 w-max"
                 style={{ animation: "marquee-rtl 12s linear infinite" }}

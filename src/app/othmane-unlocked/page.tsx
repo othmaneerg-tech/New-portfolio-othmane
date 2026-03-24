@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const galleryItems = [
   {
     type: "video",
-    src: "/assets/unlocked/vid2.mp4",
+    src: "/assets/unlocked/pure-energy.mp4",
     title: "Pure Energy",
     description: "Team building… Moroccan edition",
     color: "59, 130, 246",

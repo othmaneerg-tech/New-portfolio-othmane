@@ -16,6 +16,14 @@ const tools = [
   { name: "Meta", image: "https://www.google.com/s2/favicons?domain=meta.com&sz=256" },
   { name: "HubSpot", image: "https://www.google.com/s2/favicons?domain=hubspot.com&sz=256" },
   { name: "Ads", image: "https://www.google.com/s2/favicons?domain=ads.google.com&sz=256" },
+  { name: "GTM", image: "https://www.google.com/s2/favicons?domain=tagmanager.google.com&sz=256" },
+  { name: "Hotjar", image: "https://www.google.com/s2/favicons?domain=hotjar.com&sz=256" },
+  { name: "Shopify", image: "https://www.google.com/s2/favicons?domain=shopify.com&sz=256" },
+  { name: "Klaviyo", image: "https://www.google.com/s2/favicons?domain=klaviyo.com&sz=256" },
+  { name: "Notion", image: "https://www.google.com/s2/favicons?domain=notion.so&sz=256" },
+  { name: "Mailchimp", image: "https://www.google.com/s2/favicons?domain=mailchimp.com&sz=256" },
+  { name: "Zapier", image: "https://www.google.com/s2/favicons?domain=zapier.com&sz=256" },
+  { name: "Metricool", image: "https://www.google.com/s2/favicons?domain=metricool.com&sz=256" },
 ];
 
 const containerVariants = {
