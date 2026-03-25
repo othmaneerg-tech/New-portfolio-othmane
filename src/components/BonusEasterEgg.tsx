@@ -7,20 +7,34 @@ import { Sparkles, X } from "lucide-react";
 
 export default function BonusEasterEgg() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSpinWheelVisible, setIsSpinWheelVisible] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
   const [countdown, setCountdown] = useState(7);
   const [started, setStarted] = useState(false);
   const router = useRouter();
 
-  // Watch for footer visibility
+  // Watch for spin wheel and footer visibility
   useEffect(() => {
+    const spinWheel = document.getElementById("salary-spin-wheel");
     const footer = document.querySelector("footer");
-    if (!footer) return;
+    
     const observer = new IntersectionObserver(
-      ([entry]) => setIsFooterVisible(entry.isIntersecting),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target.id === "salary-spin-wheel") {
+            setIsSpinWheelVisible(entry.isIntersecting);
+          }
+          if (entry.target.tagName.toLowerCase() === "footer") {
+            setIsFooterVisible(entry.isIntersecting);
+          }
+        });
+      },
       { threshold: 0.1 }
     );
-    observer.observe(footer);
+
+    if (spinWheel) observer.observe(spinWheel);
+    if (footer) observer.observe(footer);
+
     return () => observer.disconnect();
   }, []);
 
@@ -50,20 +64,61 @@ export default function BonusEasterEgg() {
     <>
       {/* Floating Easter Egg Button — only visible when footer is in view */}
       <AnimatePresence>
-        {isFooterVisible && (
+        {isSpinWheelVisible && !isFooterVisible && (
           <motion.button
             key="bonus-btn"
             onClick={() => setIsOpen(true)}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            whileHover={{ scale: 1.15 }}
+            initial={{ opacity: 0, scale: 0, rotate: -20 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0, rotate: 20 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
-            className="fixed bottom-8 right-8 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_45px_rgba(168,85,247,0.9)] transition-shadow duration-300"
+            className="fixed bottom-8 right-8 z-[100] w-18 h-18 md:w-20 md:h-20 rounded-full p-[2px] bg-white/10 backdrop-blur-xl cursor-pointer group overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(168,85,247,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]"
             aria-label="Unlock Bonus"
           >
-            <Sparkles className="w-6 h-6 text-white" />
+            {/* Pulsing ambient glow behind */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-purple-500/30 blur-md"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            
+            {/* Mirror Glass Inner Surface */}
+            <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 group-hover:border-purple-400/50 transition-colors duration-500 bg-gradient-to-br from-white/20 to-transparent">
+              <img 
+                src="/assets/unlocked/img1.jpeg" 
+                alt="Unlock Bonus" 
+                className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 opacity-80 group-hover:opacity-100"
+              />
+              
+              {/* Continuous Shine Sweep */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full skew-x-12"
+                animate={{
+                  translateX: ["-100%", "200%"],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Glass Overlay Glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.2)_0%,_transparent_50%)]" />
+            </div>
+
+            {/* Bottom reflecting shadow */}
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_-4px_8px_rgba(0,0,0,0.5)] pointer-events-none" />
           </motion.button>
         )}
       </AnimatePresence>

@@ -1,7 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 interface HoverTextGlowProps {
   text: string;
@@ -22,39 +20,71 @@ export default function HoverTextGlow({
   glowColor = "rgba(41, 151, 255, 0.8)",
   className = "",
 }: HoverTextGlowProps) {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.5 });
+  
+  const [isIntro, setIsIntro] = useState(true);
+  const [introActive, setIntroActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Trigger intro sequence only when scrolled into view
+  useEffect(() => {
+    if (isInView && isIntro) {
+      const timer1 = setTimeout(() => setIntroActive(true), 200); // Start animation
+      const timer2 = setTimeout(() => setIntroActive(false), 1400); // Return pulse
+      const timer3 = setTimeout(() => setIsIntro(false), 2000); // Enable hover interactivity
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
+    }
+  }, [isInView, isIntro]);
+
+  const activeState = {
+    color: textActive,
+    textShadow: `0px 0px 50px ${glowColor}`,
+    WebkitTextStroke: `1px ${textActive}`,
+  };
+
+  const normalState = {
+    color: textNormal,
+    textShadow: "0px 0px 0px transparent",
+    WebkitTextStroke: `1px rgba(255, 255, 255, 0.6)`,
+  };
+
+  // Determine which state to show based on phase
+  const showActive = isIntro ? introActive : isHovered;
 
   return (
     <motion.div
-      className={`relative inline-flex items-center px-6 py-2 cursor-pointer group ${className}`}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      ref={containerRef}
+      className={`relative inline-flex items-center px-6 py-2 group cursor-pointer ${className}`}
+      onHoverStart={() => !isIntro && setIsHovered(true)}
+      onHoverEnd={() => !isIntro && setIsHovered(false)}
       whileTap={{ scale: 0.98 }}
       style={{ isolation: "isolate" }}
     >
       {/* Moving Border Bar */}
       <motion.div
         className="absolute top-0 bottom-0 w-1.5 z-10"
-        initial={{ left: 0 }}
         animate={{ 
-          left: isHovered ? "calc(100% - 6px)" : "0%",
+          left: showActive ? "calc(100% - 6px)" : "0%",
         }}
         style={{ backgroundColor: borderColor }}
-        transition={{ duration: 0.5, ease: [0.44, 0, 0.56, 1] }}
+        transition={{ duration: 0.8, ease: [0.44, 0, 0.56, 1] }}
       />
 
       {/* Text with Stroke/Glow */}
       <motion.span
-        animate={{
-          color: isHovered ? textActive : textNormal,
-          textShadow: isHovered ? `0px 0px 50px ${glowColor}` : "0px 0px 0px transparent",
-        }}
+        animate={showActive ? activeState : normalState}
+        transition={{ duration: 0.8, ease: [0.44, 0, 0.56, 1] }}
         style={{
           fontSize: fontSize,
           fontWeight: 700,
           letterSpacing: "4px",
           textTransform: "uppercase",
-          WebkitTextStroke: isHovered ? `1px ${textActive}` : `1px rgba(255, 255, 255, 0.6)`,
           transition: "WebkitTextStroke 0.5s cubic-bezier(0.44, 0, 0.56, 1)",
         }}
         className="relative z-0 whitespace-nowrap inline-block"

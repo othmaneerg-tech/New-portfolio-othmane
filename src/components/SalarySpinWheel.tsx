@@ -67,7 +67,7 @@ export default function SalarySpinWheel() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-20 mb-32 md:mb-10 w-full px-4 relative z-10">
+    <div id="salary-spin-wheel" className="flex flex-col items-center mt-20 mb-32 md:mb-10 w-full px-4 relative z-10">
       {/* Playful Header */}
       <h3 className="text-xl md:text-3xl font-bold text-center tracking-tight mb-2 uppercase">
         <span className="text-muted-foreground uppercase text-xs md:text-sm tracking-[0.2em] block mb-2 font-mono">Game Theory</span>
