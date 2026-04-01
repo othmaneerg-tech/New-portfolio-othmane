@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GlobalAudioPlayer from "@/components/GlobalAudioPlayer";
+import SplashCursor from "@/components/SplashCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased`}>
+        <SplashCursor />
         <Navbar />
         <main>{children}</main>
         <Footer />
